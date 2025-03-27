@@ -18,13 +18,13 @@ import {
   Keyboard,
   KeyboardEvent,
   Modal,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableHighlight,
   TouchableWithoutFeedback,
   View,
   ViewStyle,
-  StatusBar,
 } from 'react-native';
 import { useDetectDevice } from '../../toolkits';
 import { useDeviceOrientation } from '../../useDeviceOrientation';
@@ -38,7 +38,10 @@ const statusBarHeight: number = StatusBar.currentHeight || 0;
 
 const MultiSelectComponent = React.forwardRef<
   IMultiSelectRef,
-  MultiSelectProps<any>
+  MultiSelectProps<any> & {
+    isCustomTag?: boolean;
+    renderCustomTag?: React.ReactElement | null;
+  }
 >((props, currentRef) => {
   const orientation = useDeviceOrientation();
   const {
@@ -97,6 +100,8 @@ const MultiSelectComponent = React.forwardRef<
     mode = 'default',
     excludeItems = [],
     excludeSearchItems = [],
+    isCustomTag,
+    renderCustomTag,
   } = props;
 
   const ref = useRef<View>(null);
@@ -409,26 +414,11 @@ const MultiSelectComponent = React.forwardRef<
     ]
   );
 
-  const _renderDropdown = () => {
-    return (
-      <TouchableWithoutFeedback
-        testID={testID}
-        accessible={!!accessibilityLabel}
-        accessibilityLabel={accessibilityLabel}
-        onPress={showOrClose}
-      >
-        <View style={styles.dropdown}>
-          {renderLeftIcon?.(visible)}
-          <Text
-            style={StyleSheet.flatten([
-              styles.textItem,
-              placeholderStyle,
-              font(),
-            ])}
-            {...selectedTextProps}
-          >
-            {placeholder}
-          </Text>
+  const renderContent = () => {
+    if (isCustomTag) {
+      return (
+        <>
+          {renderCustomTag}
           {renderRightIcon ? (
             renderRightIcon(visible)
           ) : (
@@ -441,7 +431,47 @@ const MultiSelectComponent = React.forwardRef<
               ])}
             />
           )}
-        </View>
+        </>
+      );
+    }
+    return (
+      <>
+        {renderLeftIcon?.(visible)}
+        <Text
+          style={StyleSheet.flatten([
+            styles.textItem,
+            placeholderStyle,
+            font(),
+          ])}
+          {...selectedTextProps}
+        >
+          {placeholder}
+        </Text>
+        {renderRightIcon ? (
+          renderRightIcon(visible)
+        ) : (
+          <Image
+            source={ic_down}
+            style={StyleSheet.flatten([
+              styles.icon,
+              { tintColor: iconColor },
+              iconStyle,
+            ])}
+          />
+        )}
+      </>
+    );
+  };
+
+  const _renderDropdown = () => {
+    return (
+      <TouchableWithoutFeedback
+        testID={testID}
+        accessible={!!accessibilityLabel}
+        accessibilityLabel={accessibilityLabel}
+        onPress={showOrClose}
+      >
+        <View style={[styles.dropdown]}>{renderContent() || null}</View>
       </TouchableWithoutFeedback>
     );
   };

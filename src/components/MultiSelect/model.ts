@@ -79,4 +79,6 @@ export interface MultiSelectProps<T> {
   searchQuery?: (keyword: string, labelValue: string) => boolean;
   onChangeText?: (search: string) => void;
   onConfirmSelectItem?: (item: any) => void;
+  isCustomTag?: boolean;
+  renderCustomTag?: React.ReactElement | null;
 }
