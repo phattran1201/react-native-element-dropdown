@@ -1,67 +1,17 @@
 {
-  "name": "react-native-element-dropdown",
-  "version": "2.12.4",
-  "description": "React Native Element Dropdown is a library that provides a customizable dropdown component for React Native applications.",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
-  "files": [
-    "src",
-    "lib",
-    "android",
-    "ios",
-    "cpp",
-    "*.podspec",
-    "!lib/typescript/example",
-    "!ios/build",
-    "!android/build",
-    "!android/gradle",
-    "!android/gradlew",
-    "!android/gradlew.bat",
-    "!android/local.properties",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
-    "!**/.*"
-  ],
-  "scripts": {
-    "test": "jest",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "prepack": "bob build",
-    "release": "release-it",
-    "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install"
-  },
-  "keywords": [
-    "react-native",
-    "elements",
-    "components",
-    "material",
-    "dropdown",
-    "lazy loading",
-    "load more",
-    "menu",
-    "multiselect",
-    "picker",
-    "select",
-    "select country"
-  ],
-  "repository": "https://github.com/hoaphantn7604/react-native-element-dropdown",
-  "author": "Hoa Phan <hoaphantn7604@gmail.com> (https://github.com/hoaphantn7604)",
-  "license": "MIT",
+  "author": "Harold Tran <phattran1201@gmail.com> (https://github.com/phattran1201)",
   "bugs": {
-    "url": "https://github.com/hoaphantn7604/react-native-element-dropdown/issues"
+    "url": "https://github.com/phattran1201/react-native-element-dropdown/issues"
   },
-  "homepage": "https://github.com/hoaphantn7604/react-native-element-dropdown#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "dependencies": {
     "lodash": "^4.17.21"
   },
+  "description": "React Native Element Dropdown is a library that provides a customizable dropdown component for React Native applications.",
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.2.2",
@@ -87,51 +37,15 @@
     "release-it": "^15.0.0",
     "typescript": "^4.5.2"
   },
-  "resolutions": {
-    "@types/react": "17.0.21"
-  },
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
-  },
   "engines": {
     "node": ">= 16.0.0"
   },
-  "jest": {
-    "preset": "react-native",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
-      "<rootDir>/lib/"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
-  },
   "eslintConfig": {
-    "root": true,
     "extends": [
       "@react-native-community",
       "prettier"
     ],
+    "root": true,
     "rules": {
       "prettier/prettier": [
         "error",
@@ -146,9 +60,58 @@
     }
   },
   "eslintIgnore": [
-    "node_modules/",
-    "lib/"
+    "lib/",
+    "node_modules/"
   ],
+  "files": [
+    "!**/.*",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/__tests__",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!ios/build",
+    "!lib/typescript/example",
+    "*.podspec",
+    "android",
+    "cpp",
+    "ios",
+    "lib",
+    "src"
+  ],
+  "homepage": "https://github.com/phattran1201/react-native-element-dropdown#readme",
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/node_modules",
+      "<rootDir>/lib/"
+    ],
+    "preset": "react-native"
+  },
+  "keywords": [
+    "components",
+    "dropdown",
+    "elements",
+    "lazy loading",
+    "load more",
+    "material",
+    "menu",
+    "multiselect",
+    "picker",
+    "react-native",
+    "select",
+    "select country"
+  ],
+  "license": "MIT",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "name": "@haroldtran/react-native-element-dropdown",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
   "prettier": {
     "quoteProps": "consistent",
     "singleQuote": true,
@@ -156,9 +119,13 @@
     "trailingComma": "es5",
     "useTabs": false
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "react-native": "src/index",
   "react-native-builder-bob": {
-    "source": "src",
     "output": "lib",
+    "source": "src",
     "targets": [
       "commonjs",
       "module",
@@ -169,5 +136,41 @@
         }
       ]
     ]
-  }
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "rev${version}"
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phattran1201/react-native-element-dropdown.git"
+  },
+  "resolutions": {
+    "@types/react": "17.0.21"
+  },
+  "scripts": {
+    "bootstrap": "yarn example && yarn install",
+    "example": "yarn --cwd example",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "prepack": "bob build",
+    "release": "release-it",
+    "test": "jest",
+    "typecheck": "tsc --noEmit"
+  },
+  "source": "src/index",
+  "types": "lib/typescript/index.d.ts",
+  "version": "0.0.1"
 }
